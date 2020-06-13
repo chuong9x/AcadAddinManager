@@ -1,21 +1,21 @@
-﻿namespace AcadAddinManager
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Windows;
-    using Data;
-    using UI;
-    using Autodesk.AutoCAD.Runtime;
-    using JetBrains.Annotations;
-    using NetLib.IO;
-    using NLog;
-    using Application = Autodesk.AutoCAD.ApplicationServices.Application;
-    using Exception = System.Exception;
-    using Path = System.IO.Path;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
+using AcadAddinManager.Data;
+using AcadAddinManager.UI;
+using Autodesk.AutoCAD.Runtime;
+using JetBrains.Annotations;
+using NetLib.IO;
+using NLog;
+using Application = Autodesk.AutoCAD.ApplicationServices.Application;
+using Exception = System.Exception;
+using Path = System.IO.Path;
 
+namespace AcadAddinManager
+{
     public static class AddinManagerService
     {
         private static CommandMethod lastMethod;
@@ -182,7 +182,7 @@
                 {
                     Command = (CommandMethodAttribute) commandAtr,
                     Method = methodInfo,
-                    Addin = addin
+                    Addin = addin,
                 }).OrderBy(o => o.Command.GlobalName).ToList();
         }
 
