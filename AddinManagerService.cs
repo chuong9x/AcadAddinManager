@@ -30,12 +30,12 @@ namespace AcadAddinManager
             try
             {
                 Directory.Delete(addinDir, true);
-                $"Очищена папка загрузки плагинов '{addinDir}'.".Write();
+                $"Delete Folder Temp Loaded '{addinDir}'.".Write();
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                $"Ошибка очистки папки загрузки плагинов '{addinDir}' - {ex.Message}.".Write();
+                $"Delete Folder Can't Load '{addinDir}' - {ex.Message}.".Write();
             }
         }
 
@@ -95,14 +95,14 @@ namespace AcadAddinManager
                                                                            m.Command.GlobalName == lastMethod.Command.GlobalName);
                 if (method == null)
                 {
-                    MessageBox.Show($"Не найдена команда {lastMethod.Command.GlobalName} ({lastMethod.Method.Name}).",
+                    MessageBox.Show($"Can't Seach {lastMethod.Command.GlobalName} ({lastMethod.Method.Name}).",
                         "AddinManager", MessageBoxButton.OK, MessageBoxImage.Error);
                     AddinManager();
                     return;
                 }
 
                 lastMethod = method;
-                $"Сборка обновлена - {lastMethod.Addin.AddinFile} от {File.GetLastWriteTime(lastMethod.Addin.AddinFile):dd.MM.yy HH:mm:ss}.".Write();
+                $"Update Component - {lastMethod.Addin.AddinFile} от {File.GetLastWriteTime(lastMethod.Addin.AddinFile):dd.MM.yy HH:mm:ss}.".Write();
             }
 
             Invoke(lastMethod);

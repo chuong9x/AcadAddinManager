@@ -89,7 +89,7 @@
             });
             AddAddin = CreateCommand(AddAddinExec);
             if (!errors.IsNullOrEmpty())
-                ShowMessage(errors, "Ошибка загрузки файлов сборок");
+                ShowMessage(errors, "Have Error with load history");
 
             UpdateCommands = CreateCommand(UpdateCommandsExec);
         }
@@ -136,7 +136,7 @@
             var addinExist = AllAddins.Items.FirstOrDefault(a => a.Addin.AddinFile.EqualsIgnoreCase(file));
             if (addinExist != null)
             {
-                ShowMessage("Такая сборка уже есть");
+                ShowMessage("History have Exited");
                 Addin = addinExist;
                 return;
             }
@@ -150,7 +150,7 @@
         {
             var dlg = new OpenFileDialog
             {
-                Title = "AddinManager - выбор сборки плагина autocad",
+                Title = "AddinManager - Select In Autocad",
                 Filter = "Net assembly files (*.dll) | *.dll;"
             };
             return dlg.ShowDialog() == true ? dlg.FileName : throw new OperationCanceledException();
