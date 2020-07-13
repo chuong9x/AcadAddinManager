@@ -6,7 +6,7 @@
     {
         public void Initialize()
         {
-            "Загружен AddinManager. Команды:\nAddinManager - выбор плагина и запуск команды,\nAddinManagerLast - запуск последней команды.".Write();
+            "Add to AddinManager. Command:\nAddinManager - Select Command,\nAddinManagerLast - Run Commmand Last.".Write();
             AddinManagerService.ClearAddins();
         }
 
