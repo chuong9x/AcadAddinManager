@@ -120,7 +120,7 @@
     <PackageReference Update="Fody" Version="6.1.1" />
     <PackageReference Update="Nerdbank.GitVersioning" Version="3.1.68" />
     <PackageReference Update="PropertyChanged.Fody" Version="3.2.6" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.2.6" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

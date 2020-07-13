@@ -30,12 +30,12 @@
             try
             {
                 Directory.Delete(addinDir, true);
-                $"Очищена папка загрузки плагинов '{addinDir}'.".Write();
+                $"Không có folder để gọi plug-in '{addinDir}'.".Write();
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                $"Ошибка очистки папки загрузки плагинов '{addinDir}' - {ex.Message}.".Write();
+                $"Không thể gọi plug-in '{addinDir}' - {ex.Message}.".Write();
             }
         }
 
@@ -95,14 +95,14 @@
                                                                            m.Command.GlobalName == lastMethod.Command.GlobalName);
                 if (method == null)
                 {
-                    MessageBox.Show($"Не найдена команда {lastMethod.Command.GlobalName} ({lastMethod.Method.Name}).",
+                    MessageBox.Show($"Không thể tìm thấy mệnh lệnh. {lastMethod.Command.GlobalName} ({lastMethod.Method.Name}).",
                         "AddinManager", MessageBoxButton.OK, MessageBoxImage.Error);
                     AddinManager();
                     return;
                 }
 
                 lastMethod = method;
-                $"Сборка обновлена - {lastMethod.Addin.AddinFile} от {File.GetLastWriteTime(lastMethod.Addin.AddinFile):dd.MM.yy HH:mm:ss}.".Write();
+                $"Tập hợp được cập nhật - {lastMethod.Addin.AddinFile} от {File.GetLastWriteTime(lastMethod.Addin.AddinFile):dd.MM.yy HH:mm:ss}.".Write();
             }
 
             Invoke(lastMethod);

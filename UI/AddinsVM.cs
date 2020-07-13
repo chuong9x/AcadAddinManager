@@ -1,20 +1,20 @@
-﻿namespace AcadAddinManager.UI
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Reactive;
-    using System.Reactive.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using Data;
-    using DynamicData;
-    using Microsoft.Win32;
-    using NetLib;
-    using NetLib.WPF;
-    using ReactiveUI;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using AcadAddinManager.Data;
+using DynamicData;
+using Microsoft.Win32;
+using NetLib;
+using NetLib.WPF;
+using ReactiveUI;
 
+namespace AcadAddinManager.UI
+{
     public class AddinsVM : BaseViewModel
     {
         private LocalFileData<AddinsData> fileData;
@@ -66,7 +66,8 @@
             }
 
             var canStart = this.WhenAnyValue(v => v.Command).Select(s => s != null);
-            Start = CreateCommand(() =>
+            Start = CreateCommand(
+                () =>
             {
                 HideMe();
                 var addin = Addin;
@@ -82,14 +83,14 @@
                 Command = com;
                 AddinManagerService.Invoke(com);
             }, canStart);
-            RemoveAddin = CreateCommand<AddinVM>(a =>
+            RemoveAddin = this.CreateCommand<AddinVM>(a =>
             {
                 AllAddins.Remove(a);
                 fileData.Data.AddinFiles.Remove(a.Addin.AddinFile);
             });
             AddAddin = CreateCommand(AddAddinExec);
             if (!errors.IsNullOrEmpty())
-                ShowMessage(errors, "Ошибка загрузки файлов сборок");
+                ShowMessage(errors, "Đã xảy ra lỗi khi gọi tệp xung đột");
 
             UpdateCommands = CreateCommand(UpdateCommandsExec);
         }
@@ -136,7 +137,7 @@
             var addinExist = AllAddins.Items.FirstOrDefault(a => a.Addin.AddinFile.EqualsIgnoreCase(file));
             if (addinExist != null)
             {
-                ShowMessage("Такая сборка уже есть");
+                ShowMessage("Việc lắp ráp này đã tồn tại.");
                 Addin = addinExist;
                 return;
             }
@@ -150,7 +151,7 @@
         {
             var dlg = new OpenFileDialog
             {
-                Title = "AddinManager - выбор сборки плагина autocad",
+                Title = "AddinManager - Việc lắp ráp này đã tồn tại. autocad",
                 Filter = "Net assembly files (*.dll) | *.dll;"
             };
             return dlg.ShowDialog() == true ? dlg.FileName : throw new OperationCanceledException();
